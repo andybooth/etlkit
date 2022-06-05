@@ -10,16 +10,5 @@ public class Validator<TModel>
         return this;
     }
 
-    public bool IsValid(TModel model) 
-    {
-        foreach (var rule in _rules) 
-        {
-            if (rule(model) == false) 
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
+    public bool IsValid(TModel model) => _rules.All(r => r(model));
 }
